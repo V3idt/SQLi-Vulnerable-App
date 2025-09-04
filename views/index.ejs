@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SQLi Vulnerable App</title>
+    </head>
+    <body>
+        <h1>Welcome to the SQLi Vulnerable App, <%= user ? user.first_name : "Guest" %></h1>
+        <img src="star.jpeg" alt="Star Image"><br>
+        <a href="/products">View Products</a><br>
+        <% if (isLoggedIn) { %>
+            <a href="/user">User Profile</a><br>
+            <% if (user.is_admin) { %>
+                <a href="/admin">Admin Panel</a><br>
+            <% } %>
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        <% } else { %>
+            <a href="/login">Login</a><br>
+            <a href="/register">Register</a><br>
+        <% } %>
+    </body>
+</html>

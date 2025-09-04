@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Edit Profile</title>
+    </head>
+    <body>
+        <% if (user) { %>
+            <h1>Edit Profile</h1>
+            <form action="/profile/edit" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" placeholder="<%= user.username %>" id="username" name="username" required>
+                <br>
+            <label for="first_name">First Name:</label>
+            <input type="text" placeholder="<%= user.first_name %>" id="first_name" name="first_name" required>
+            <br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" placeholder="<%= user.last_name %>" id="last_name" name="last_name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" placeholder="<%= user.email %>" id="email" name="email" required>
+            <br>
+            <label for="phone_number">Phone Number:</label>
+            <input type="text" placeholder="<%= user.phone_number %>" id="phone_number" name="phone_number" required>
+            <br>
+            <input type="submit" value="Save Changes">
+        </form>
+        <% } else { %>
+            <h1>Access Denied</h1>
+            <p>You must be logged in to edit your profile.</p>
+            <a href="/">Back to Home</a>
+        <% } %>
+    </body>
+</html>

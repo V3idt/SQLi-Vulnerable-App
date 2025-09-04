@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <% if (message) { %>
+            <p><%= message %></p>
+        <% } %>
+        <h1>User Profile</h1>
+        <a href="/">Back to Home</a>
+        <p>Full Name: <%= user.first_name %> <%= user.last_name %></p>
+        <p>Username: <%= user.username %></p>
+        <p>Email: <%= user.email %></p>
+        <p>Phone Number: <%= user.phone_number %></p>
+        <form action="/profile/edit" method="GET">
+            <button type="submit">Edit Profile</button>
+        </form>
+        <% if (user.is_admin) { %>
+            <form action="/admin" method="GET">
+                <button type="submit">Admin Panel</button>
+            </form>
+        <% } %>
+        <form action="/password/change" method="GET">
+            <button type="submit">Change Password</button>
+        </form>
+        <form action="/delete/<%= user.id %>" method="POST">
+            <button type="submit">Delete Account</button>
+        </form>
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </body>
+</html>

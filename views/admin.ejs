@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Panel</title>
+    </head>
+    <body>
+        <% if (!user.is_admin) { %>
+            <script>
+                alert('Access denied. Admins only.');
+                
+            </script>
+        <% } else { %>
+            <h1>Welcome to the Admin Panel</h1>
+            <!-- List of users and edit, delete and add options -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Password</th>
+                        <th>Is Admin</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(function(user) { %>
+                        <tr>
+                            <td><%= user.id %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.first_name %></td>
+                            <td><%= user.last_name %></td>
+                            <td><%= user.email %></td>
+                            <td><%= user.phone_number %></td>
+                            <td><%= user.password_hash %></td>
+                            <td><%= user.is_admin ? 'Yes' : 'No' %></td>
+                            <td>
+                                <a href="/admin/edit/<%= user.id %>">Edit</a>
+                            </td>
+                            <td>
+                                <form action="/admin/delete/<%= user.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            <a href="/admin/add_user">Add User</a>
+            <a href="/">Back to Home</a>
+        <% } %>
+    </body>
+</html>
