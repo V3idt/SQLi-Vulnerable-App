@@ -1,4 +1,4 @@
-# server
+# SQLi Vulnerable APP
 
 A simple SQLi vulnerable application for SQL Injection testing.
 
